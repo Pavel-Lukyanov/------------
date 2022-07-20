@@ -317,8 +317,7 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     //Показ файлов выбранных для загрузки 
-     //Показ файлов выбранных для загрузки 
-     class File {
+    class File {
         constructor(input, index) {
             this._input = input
             this._list = document.querySelector(`[data-input="${index}"]`)
@@ -362,7 +361,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 this._list.insertAdjacentHTML('beforeend', `<li class="file__no-format" style="color: red">Неподходящий формат для файла: ${fileName}</li>`)
                 this._files = this._files.filter(item => item.name !== fileName)
             } else {
-                this._list.insertAdjacentHTML('beforeend', `<li>${fileName} <span data-name="${fileName}" class="file__delete__icon"></span></li>`)
+                this._list.insertAdjacentHTML('beforeend', `<li>${fileName.length > 40 ? '...' + fileName.slice(fileName.length - 40) : fileName} <span data-name="${fileName}" class="file__delete__icon"></span></li>`)
             }
         }
 
@@ -539,7 +538,7 @@ document.addEventListener('DOMContentLoaded', function () {
             // Если есть селекты на странице то валидируем их
             if (selects.length > 0) {
                 for (let select of selects) {
-                    if(select.classList.contains('valid')) {
+                    if (select.classList.contains('valid')) {
                         selectCount++;
                     } else {
                         select.classList.add('invalid');
@@ -554,7 +553,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     validInput.classList.add('invalid');
                 }
             }
-            if(checkAgree) { //Если чекбокс согласия присутствуют, то он учитываются при валидации, иначе нет
+            if (checkAgree) { //Если чекбокс согласия присутствуют, то он учитываются при валидации, иначе нет
                 if ((validInputCounter == validInputs.length) && checkAgree.checked && selectCount == selects.length) {
                     console.log('valid');
                 } else {
@@ -574,17 +573,17 @@ document.addEventListener('DOMContentLoaded', function () {
     // Валидация входа в личный кабинет
     let submitIndividualArea = document.querySelector('#submitIndividualArea');
     let submitLegalArea = document.querySelector('#submitLegalArea');
-    
+
     // Частные лица
-    if(submitIndividualArea) {
+    if (submitIndividualArea) {
         let inputIndividualForms = individualForm.querySelectorAll('input');
         let validInputCounter = 0;
         submitIndividualArea.addEventListener('click', (event) => {
             event.preventDefault();
-            for(let inputIndividualForm of inputIndividualForms) {
-                if(inputIndividualForm.classList.contains('valid')) {
+            for (let inputIndividualForm of inputIndividualForms) {
+                if (inputIndividualForm.classList.contains('valid')) {
                     validInputCounter++;
-                }else {
+                } else {
                     inputIndividualForm.classList.add('invalid');
                 }
             }
@@ -597,13 +596,13 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     // Юр.лица
-    if(submitLegalArea) {
+    if (submitLegalArea) {
         let inputLegalForms = legalForm.querySelectorAll('input');
         let validInputCounter = 0;
         submitLegalArea.addEventListener('click', (event) => {
             event.preventDefault();
-            for(let inputLegalForm of inputLegalForms) {
-                if(inputLegalForm.classList.contains('valid')) {
+            for (let inputLegalForm of inputLegalForms) {
+                if (inputLegalForm.classList.contains('valid')) {
                     validInputCounter++;
                 } else {
                     inputLegalForm.classList.add('invalid');
@@ -616,8 +615,8 @@ document.addEventListener('DOMContentLoaded', function () {
             }
         })
     }
-    
-    
+
+
 
     //Карта на странице качество воды
     if (document.getElementById('mapQuality')) {
